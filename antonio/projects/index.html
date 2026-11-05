@@ -3,9 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="google-analytics-id" content="G-XXXXXXXXXX">
-  <meta name="description" content="Selected embedded systems, electronics prototyping, and medical device validation projects by Antonio Estrada.">
-  <title>Projects — Antonio Estrada — Kangastrada</title>
+  <meta name="description" content="Selected projects in test automation, embedded systems, and battery validation by Antonio Estrada.">
+  <title>Engineering Projects — Antonio Estrada</title>
   <link rel="stylesheet" href="/style.css">
   <script src="/components.js" defer></script>
 </head>
@@ -13,38 +12,49 @@
   <site-header class="site-header"></site-header>
   <main id="main">
     <section class="page-intro container">
-      <p class="eyebrow"><a href="/antonio">Antonio</a> / Projects</p>
-      <h1>Projects</h1>
-      <p class="lead">A selection of connected devices, electronics prototyping, and validation work across the product lifecycle.</p>
+      <p class="eyebrow"><a href="/antonio">About</a> / Projects</p>
+      <h1>Selected projects</h1>
+      <p class="lead">Test systems and embedded projects built around practical hardware work and verification.</p>
     </section>
     <section class="section">
       <div class="container card-grid card-grid--three">
         <article class="card">
-          <span class="card__number">01 / EMBEDDED SYSTEMS</span>
+          <span class="card__number">EMBEDDED SYSTEMS</span>
           <div>
-            <h3>Multi-Country ESP32 Clock</h3>
-            <p>Project description placeholder for the connected clock, timekeeping, and display system.</p>
-            <p><a href="https://github.com/AntonioTRT" target="_blank" rel="noopener noreferrer">Explore on GitHub <span aria-hidden="true">↗</span></a></p>
+            <h3>TRT embedded runtime</h3>
+            <p><strong>Problem:</strong> Create a consistent host-to-board command path across embedded targets.</p>
+            <p><strong>My contribution:</strong> Built a portable runtime and Python CLI around shared protocol and board interfaces.</p>
+            <p><strong>Validation:</strong> Completed a real serial transaction with an Arduino Uno, reading board identity, firmware version, and build ID.</p>
+            <p><strong>Outcome:</strong> A working end-to-end path on the validated Uno target; other board integrations remain at different stages.</p>
+            <p><a href="/trt">Project details <span aria-hidden="true">→</span></a></p>
           </div>
         </article>
         <article class="card">
-          <span class="card__number">02 / ELECTRONICS</span>
+          <span class="card__number">TEST AUTOMATION</span>
           <div>
-            <h3>Circuit Simulation &amp; PCB Prototyping</h3>
-            <p>Project description placeholder for circuit simulation, board design, and hardware prototyping.</p>
+            <h3>RPI Test Framework</h3>
+            <p><strong>Problem:</strong> Repeat DUT commands and capture evidence around embedded-device communication.</p>
+            <p><strong>My contribution:</strong> Built Python test modules for command checks, serial utility calls, and Tektronix I2C event capture.</p>
+            <p><strong>Validation:</strong> Test modules compare responses with expected values and save command, response, and decoded I2C data to CSV.</p>
+            <p><strong>Outcome:</strong> Reusable test and capture components that keep command results and I2C evidence together for review.</p>
+            <p><a href="/rpi-test-framework">Project details <span aria-hidden="true">→</span></a></p>
           </div>
         </article>
         <article class="card">
-          <span class="card__number">03 / VALIDATION</span>
+          <span class="card__number">BATTERY TESTING</span>
           <div>
-            <h3>Wearables &amp; Medical Devices Validation</h3>
-            <p>Project description placeholder for wearable and medical device testing and validation.</p>
+            <h3>NIPXI battery test system</h3>
+            <p><strong>Problem:</strong> Coordinate instrument control, relay switching, safety checks, and measurement storage for battery testing.</p>
+            <p><strong>My contribution:</strong> Developed a configuration-driven test architecture with modular hardware and test-control layers.</p>
+            <p><strong>Validation:</strong> Real-rack instrument checks, DMM measurements, Ethernet relay operation, and a no-battery Proto Test were documented as passed.</p>
+            <p><strong>Outcome:</strong> Rack bring-up is verified; real-cell charge/discharge performance and full-cycle reporting remain unfinished.</p>
+            <p><a href="/nipxi">Project details <span aria-hidden="true">→</span></a></p>
           </div>
         </article>
       </div>
     </section>
     <section class="section">
-      <div class="container"><a class="button button--quiet" href="/antonio">← Back to Antonio's profile</a></div>
+      <div class="container"><a class="button button--quiet" href="/antonio">&#8592; About me</a></div>
     </section>
   </main>
   <site-footer class="site-footer"></site-footer>

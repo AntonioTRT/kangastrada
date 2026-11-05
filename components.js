@@ -1,3 +1,9 @@
+// Add a GA4 measurement ID and consent-aware loader here when analytics is enabled.
+// An empty ID keeps analytics inactive and makes no tracking requests.
+const analyticsConfig = Object.freeze({
+  googleAnalyticsMeasurementId: "",
+});
+
 class SiteHeader extends HTMLElement {
   connectedCallback() {
     if (this.dataset.rendered === "true") return;
@@ -5,9 +11,11 @@ class SiteHeader extends HTMLElement {
     const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
     const links = [
       ["/", "Home"],
-      ["/antonio", "Antonio"],
-      ["/trt", "TRT Project"],
-      ["/#contact", "Contact"]
+      ["/antonio", "About"],
+      ["/antonio/electronics", "Experience"],
+      ["/antonio/education", "Education"],
+      ["/antonio/projects", "Projects"],
+      ["/contact", "Contact"]
     ];
 
     this.innerHTML = `
@@ -17,7 +25,10 @@ class SiteHeader extends HTMLElement {
           <span class="site-brand__mark" aria-hidden="true">K</span>
           <span>Kangastrada</span>
         </a>
-        <nav class="site-nav" aria-label="Main navigation">
+        <button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          Menu
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
           ${links.map(([href, label]) => {
             const isContact = href === "/#contact";
             const isCurrent = isContact
@@ -28,6 +39,23 @@ class SiteHeader extends HTMLElement {
         </nav>
       </header>
     `;
+
+    const menuButton = this.querySelector(".site-menu-toggle");
+    const header = this.querySelector(".site-header__inner");
+    const closeMenu = () => {
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.textContent = "Menu";
+      header.classList.remove("is-open");
+    };
+
+    menuButton.addEventListener("click", () => {
+      const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
+      menuButton.setAttribute("aria-expanded", String(!isExpanded));
+      menuButton.textContent = isExpanded ? "Menu" : "Close";
+      header.classList.toggle("is-open", !isExpanded);
+    });
+    this.querySelectorAll(".site-nav a").forEach((link) => link.addEventListener("click", closeMenu));
+
     this.dataset.rendered = "true";
   }
 }
@@ -42,11 +70,11 @@ class SiteFooter extends HTMLElement {
           <span class="site-brand__mark" aria-hidden="true">K</span>
           <span>Kangastrada</span>
         </a>
-        <p>Helsinki, Finland</p>
-        <a class="site-footer__email" href="mailto:hello@example.com">hello@example.com</a>
+        <p>Based in Finland</p>
+        <a href="/contact">Contact</a>
+        <a href="https://github.com/AntonioTRT" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
         <p class="site-footer__copyright">
           &copy; ${new Date().getFullYear()} Kangastrada
-          <span class="site-footer__analytics" data-google-analytics-id="G-XXXXXXXXXX">Google Analytics: G-XXXXXXXXXX</span>
         </p>
       </footer>
     `;
@@ -61,3 +89,9 @@ if (!customElements.get("site-header")) {
 if (!customElements.get("site-footer")) {
   customElements.define("site-footer", SiteFooter);
 }
+
+document.addEventListener("submit", (event) => {
+  if (event.target.matches("[data-unconnected-form]")) {
+    event.preventDefault();
+  }
+});

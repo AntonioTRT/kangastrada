@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A PXI battery test system developed by Antonio Estrada, with modular hardware control and safety-focused validation.">
+  <title>NIPXI Battery Test System — Antonio Estrada</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/components.js" defer></script>
+</head>
+<body>
+  <site-header class="site-header"></site-header>
+  <main id="main">
+    <section class="page-intro container">
+      <p class="eyebrow"><a href="/antonio/projects">Projects</a> / Battery testing</p>
+      <h1>NIPXI battery test system</h1>
+      <p class="lead">A configuration-driven PXI system for battery testing, instrument control, and measurement capture.</p>
+    </section>
+
+    <section class="section" aria-labelledby="problem-title">
+      <div class="container split">
+        <p class="split__label">Problem</p>
+        <div class="prose">
+          <h2 id="problem-title">Coordinate a complex test station safely.</h2>
+          <p>Battery testing brings together programmable instruments, relay switching, multiple channels, and measurement records. NIPXI organizes these functions for a station designed around eight battery positions and a shared hub board.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="contribution-title">
+      <div class="container split">
+        <p class="split__label">My contribution</p>
+        <div class="prose">
+          <h2 id="contribution-title">Build modular control around the rack.</h2>
+          <p>I developed configuration-driven device mapping, hardware lifecycle management, test sequences, relay control, safety monitoring, and SQLite/CSV measurement storage. NI instruments and relay drivers are kept behind hardware classes so test logic can work through shared interfaces.</p>
+          <p>Emergency shutdown disables and verifies the SMU output, then opens the relays. A low-current check gates relay switching.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="validation-title">
+      <div class="container split">
+        <p class="split__label">Validation</p>
+        <div class="prose">
+          <h2 id="validation-title">Real rack checks without a battery.</h2>
+          <p>Documented physical-rack checks include instrument discovery, SMU bench sourcing and readback, DMM voltage measurement, Numato Ethernet relay operation, and a Proto Test run through the production architecture without a battery connected.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="outcome-title">
+      <div class="container split">
+        <p class="split__label">Outcome and next step</p>
+        <div class="prose">
+          <h2 id="outcome-title">Rack bring-up is ahead of battery-cycle validation.</h2>
+          <p>The rack, relay path, safety mechanisms, and test infrastructure have been exercised. Real-cell charge/discharge performance has not yet been validated; multi-channel acquisition, temperature monitoring, and summary reporting remain unfinished.</p>
+          <a class="button button--quiet" href="/antonio/projects">All projects <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <site-footer class="site-footer"></site-footer>
+</body>
+</html>

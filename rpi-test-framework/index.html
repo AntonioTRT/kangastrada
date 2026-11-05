@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A Python DUT test harness for serial command checks and captured I2C evidence by Antonio Estrada.">
+  <title>RPI Test Framework — Antonio Estrada</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/components.js" defer></script>
+</head>
+<body>
+  <site-header class="site-header"></site-header>
+  <main id="main">
+    <section class="page-intro container">
+      <p class="eyebrow"><a href="/antonio/projects">Projects</a> / Test automation</p>
+      <h1>RPI Test Framework</h1>
+      <p class="lead">A practical test harness for repeating embedded-device commands and capturing communication evidence.</p>
+    </section>
+
+    <section class="section" aria-labelledby="problem-title">
+      <div class="container split">
+        <p class="split__label">Problem</p>
+        <div class="prose">
+          <h2 id="problem-title">Make DUT checks repeatable.</h2>
+          <p>Manual command checks are difficult to repeat and compare. This framework runs commands against a DUT and captures serial responses and I2C activity around selected tests.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="contribution-title">
+      <div class="container split">
+        <p class="split__label">My contribution</p>
+        <div class="prose">
+          <h2 id="contribution-title">Connect command execution with lab evidence.</h2>
+          <p>I built Python test modules that load per-test YAML settings, invoke the DUT command utility, compare responses with expected values, and record TX/RX data to CSV. The I2C capture path controls a Tektronix scope, decodes its event export, and stores the transactions alongside the test run.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="validation-title">
+      <div class="container split">
+        <p class="split__label">Validation</p>
+        <div class="prose">
+          <h2 id="validation-title">Check responses and preserve evidence.</h2>
+          <p>The command-list test supports exact, contains, and numeric-range checks. Loop tests save command/response logs and decoded I2C transaction data. This documents the implemented validation path, not a particular pass rate or product qualification result.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="outcome-title">
+      <div class="container split">
+        <p class="split__label">Outcome</p>
+        <div class="prose">
+          <h2 id="outcome-title">Reusable test and capture components.</h2>
+          <p>The repository provides focused command, listen, and scope-capture utilities. The top-level runner still needs alignment with the per-test configuration before it can serve as a streamlined selectable test suite.</p>
+          <a class="button button--quiet" href="/antonio/projects">All projects <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <site-footer class="site-footer"></site-footer>
+</body>
+</html>

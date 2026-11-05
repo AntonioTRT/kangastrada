@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contact Antonio Estrada about electronics engineering, testing, validation, projects, collaborations, or professional opportunities.">
+  <title>Contact — Antonio Estrada</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/components.js" defer></script>
+</head>
+<body>
+  <site-header class="site-header"></site-header>
+  <main id="main">
+    <section class="page-intro container">
+      <p class="eyebrow"><a href="/">Home</a> / Contact</p>
+      <h1>Let’s talk engineering.</h1>
+      <p class="lead">Get in touch about engineering topics, projects, collaborations, or professional opportunities. I’ll do my best to respond.</p>
+    </section>
+
+    <section class="section" aria-labelledby="message-title">
+      <div class="container split">
+        <p class="split__label">Send a message</p>
+        <div class="prose">
+          <h2 id="message-title">What would you like to discuss?</h2>
+          <form class="contact-form" method="post" data-unconnected-form aria-describedby="form-status">
+            <label class="form-field">
+              Name
+              <input name="name" type="text" autocomplete="name" required>
+            </label>
+            <label class="form-field">
+              Email
+              <input name="email" type="email" autocomplete="email" required>
+            </label>
+            <label class="form-field">
+              Topic
+              <select name="topic" required>
+                <option value="" selected disabled>Select a topic</option>
+                <option>Engineering question</option>
+                <option>Project</option>
+                <option>Collaboration</option>
+                <option>Professional opportunity</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label class="form-field">
+              Message
+              <textarea name="message" rows="6" required></textarea>
+            </label>
+            <p class="notice" id="form-status" role="status">The form is not connected to a message service yet. Your message will not be sent from this page.</p>
+            <button class="button" type="submit" disabled>Message submission not available yet</button>
+          </form>
+          <p>For now, you can find my public project work on <a href="https://github.com/AntonioTRT" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="portfolio-request-title">
+      <div class="container split">
+        <p class="split__label">CV or portfolio</p>
+        <div class="prose">
+          <h2 id="portfolio-request-title">Request my CV or portfolio.</h2>
+          <p>This will be a separate request option. It is not connected yet; the CV and portfolio materials will be made available here when that workflow is ready.</p>
+          <button class="button button--quiet" type="button" disabled>CV and portfolio request not available yet</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <site-footer class="site-footer"></site-footer>
+</body>
+</html>

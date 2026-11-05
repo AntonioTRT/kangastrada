@@ -3,9 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="google-analytics-id" content="G-XXXXXXXXXX">
-  <meta name="description" content="TRT is an integrated embedded engineering platform spanning portable firmware, developer tooling, and modular hardware.">
-  <title>TRT Project — Kangastrada</title>
+  <meta name="description" content="An embedded runtime and host toolchain developed by Antonio Estrada, with a verified Arduino Uno protocol transaction.">
+  <title>TRT Embedded Runtime — Antonio Estrada</title>
   <link rel="stylesheet" href="/style.css">
   <script src="/components.js" defer></script>
 </head>
@@ -13,147 +12,50 @@
   <site-header class="site-header"></site-header>
   <main id="main">
     <section class="page-intro container">
-      <p class="eyebrow">Selected work / Flagship engineering project</p>
-      <h1>TRT</h1>
-      <p class="lead">An integrated embedded engineering platform connecting autonomous board firmware, a cross-platform command-line interface, and modular hardware.</p>
+      <p class="eyebrow"><a href="/antonio/projects">Projects</a> / Embedded systems</p>
+      <h1>TRT embedded runtime</h1>
+      <p class="lead">A shared firmware and command-line path for discovering and communicating with embedded boards.</p>
     </section>
 
-    <section class="section" id="system-overview" aria-labelledby="system-overview-title">
+    <section class="section" aria-labelledby="problem-title">
       <div class="container split">
-        <p class="split__label">System overview</p>
+        <p class="split__label">Problem</p>
         <div class="prose">
-          <h2 id="system-overview-title">One runtime. Multiple boards. A consistent protocol.</h2>
-          <p>TRT (Tool Runtime Terminal) is a portable runtime and tooling architecture for communicating with embedded boards. The host CLI issues typed commands through the shared TRT protocol; TRT-core routes them into a board implementation, which connects the runtime to its hardware and peripherals.</p>
-          <div class="feature-band">
-            <p><strong>TRT-cli</strong> &rarr; <strong>TRT Protocol</strong> &rarr; <strong>TRT-core</strong> &rarr; <strong>Board implementation</strong> &rarr; <strong>Hardware</strong></p>
-          </div>
-          <p>Boards are designed to remain autonomous: communication is an interface to the runtime, not the owner of its control loop. The architecture targets Arduino, ESP32, STM32, RP2040, simulator, and future compatible platforms through shared contracts and declared capabilities.</p>
+          <h2 id="problem-title">Make board communication consistent.</h2>
+          <p>Embedded projects often develop their own command and discovery paths. TRT brings a host CLI, a common protocol, and reusable firmware components together while leaving each board responsible for its hardware.</p>
         </div>
       </div>
     </section>
 
-    <section class="section" id="trt-core" aria-labelledby="trt-core-title">
+    <section class="section" aria-labelledby="contribution-title">
       <div class="container split">
-        <p class="split__label">Core logic &amp; firmware</p>
+        <p class="split__label">My contribution</p>
         <div class="prose">
-          <p class="eyebrow">TRT-core</p>
-          <h2 id="trt-core-title">A portable, cooperative embedded runtime.</h2>
-          <p>TRT-core provides the shared runtime between protocol communication and board-specific integrations. Its architecture is organized around a configuration manager, state machine, services, event and command systems, protocol integration, transport interfaces, and capability management.</p>
-          <p>The cooperative execution model updates services, processes events and commands, advances state, and transmits queued messages without blocking on host input. Board adapters provide peripheral drivers and platform-specific behavior; the core depends on interfaces rather than board-family checks.</p>
-          <ul class="tag-list">
-            <li>Queued command and event flow</li>
-            <li>Non-blocking runtime</li>
-            <li>State machine</li>
-            <li>Capability declarations</li>
-            <li>Board and transport interfaces</li>
-          </ul>
-          <h3>Protocol V0.1 baseline</h3>
-          <p>The mandatory compatibility commands are PING, FW_VERSION, BOARD_VERSION, INFO, STATUS, and CAPABILITIES. Responses use ACK, NACK, or DATA frames, with defined errors for unknown or unsupported commands, invalid arguments, busy devices, timeouts, and internal failures. The current core implementation reserves the CRC16 field as <code>0x0000</code>.</p>
+          <h2 id="contribution-title">Build the path from CLI to board.</h2>
+          <p>I developed the Python CLI and a portable C++ runtime with protocol parsing, command dispatch, capability reporting, and board-level interfaces. The runtime uses a cooperative loop so local board behavior does not depend on host traffic.</p>
+          <p>Board integrations provide transport and hardware-specific behavior. The simulator and Arduino adapter exercise the shared contracts; STM32 integration remains separate work.</p>
         </div>
       </div>
     </section>
 
-    <section class="section" id="trt-cli" aria-labelledby="trt-cli-title">
+    <section class="section" aria-labelledby="validation-title">
       <div class="container split">
-        <p class="split__label">Tooling &amp; interface</p>
+        <p class="split__label">Validation</p>
         <div class="prose">
-          <p class="eyebrow">TRT-cli</p>
-          <h2 id="trt-cli-title">A single workflow from discovery to diagnostics.</h2>
-          <p>The Python command-line interface separates Typer command handlers and Rich terminal output from application services, typed protocol clients, transport implementations, and board-state storage. Serial discovery probes available ports for compatible boards; discovered board IDs, ports, and baud rates can be cached for later commands.</p>
-          <ul class="tag-list">
-            <li>Board discovery and information</li>
-            <li>Capabilities and status</li>
-            <li>Heartbeat listening</li>
-            <li>Serial diagnostics</li>
-            <li>STM32 build and flash workflows</li>
-          </ul>
-          <p>Heartbeat listening provides a passive runtime check: TRT-core boards emit a HEARTBEAT event approximately once per second. The CLI retains mock transport for explicit test and support use; it is not the path used for the validated board-information transaction.</p>
+          <h2 id="validation-title">A real serial transaction on Arduino Uno.</h2>
+          <p>The CLI communicated with an Arduino Uno running TRT firmware over COM4. The board-info workflow returned board ID 101, firmware version 0.1.0, and build ID 000004.</p>
         </div>
       </div>
     </section>
 
-    <section class="section" id="trt-hardware" aria-labelledby="trt-hardware-title">
+    <section class="section" aria-labelledby="outcome-title">
       <div class="container split">
-        <p class="split__label">Hardware &amp; physical layer</p>
+        <p class="split__label">Outcome</p>
         <div class="prose">
-          <p class="eyebrow">TRT_HW</p>
-          <h2 id="trt-hardware-title">A modular carrier-board design.</h2>
-          <p>The documented carrier-board specification is based on an STM32G474RET6 ARM Cortex-M4F microcontroller, rated up to 170 MHz with FPU and DSP. A 2&times;8 board-to-board connector brings power, GPIO, SPI, I2C, and four digital hardware-identification signals to daughterboards.</p>
-          <div class="card-grid card-grid--three">
-            <article class="card">
-              <span class="card__number">POWER &amp; DEBUG</span>
-              <div>
-                <h3>Bring-up access</h3>
-                <p>USB-C 5 V input, an AMS1117 3.3 V regulator, reset circuitry, and Tag-Connect SWD for programming and debug.</p>
-              </div>
-            </article>
-            <article class="card">
-              <span class="card__number">BUSES &amp; I/O</span>
-              <div>
-                <h3>Peripheral interfaces</h3>
-                <p>SPI1 and I2C1 connect through the expansion header. I2C pull-ups are switchable for low-power operation; GPIO, DAC, and HWID signals support board integration.</p>
-              </div>
-            </article>
-            <article class="card">
-              <span class="card__number">LOAD CONTROL</span>
-              <div>
-                <h3>PWM motor driver</h3>
-                <p>An AO3400A low-side MOSFET stage, flyback diode, and dedicated motor connector provide a documented interface for PWM-controlled loads.</p>
-              </div>
-            </article>
-          </div>
-          <p>The hardware README specifies a 10 kHz motor PWM setup and layout guidance for power-current return paths, MCU decoupling, the 8 MHz crystal, and the USB differential pair. These are design and integration requirements, not reported hardware test results.</p>
-          <p>For the separate NUCLEO-L073RZ firmware integration, the documented bring-up procedure is to build and upload with PlatformIO, connect through the ST-LINK virtual COM port at 115200 baud, and send a protocol PING that should return ACK for board <code>0x0002</code>. Follow-up checks use TRT discovery and board-info commands, observe the LD2 heartbeat at 500 ms, and confirm the B1 button changes the blink interval to 100 ms. This NUCLEO target is distinct from the STM32G474 carrier-board design above.</p>
+          <h2 id="outcome-title">A verified starting point for board tooling.</h2>
+          <p>The Arduino transaction demonstrates the end-to-end host-to-firmware path on one target. It does not mean every planned board, peripheral command, or transport is implemented.</p>
+          <a class="button button--quiet" href="/antonio/projects">All projects <span aria-hidden="true">→</span></a>
         </div>
-      </div>
-    </section>
-
-    <section class="section" id="project-status" aria-labelledby="project-status-title">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Project status &amp; milestones</p>
-            <h2 id="project-status-title">From protocol contract to real hardware.</h2>
-          </div>
-          <p>The current milestone combines a defined protocol baseline, implemented developer workflows, and documented board integrations.</p>
-        </div>
-        <div class="card-grid card-grid--three">
-          <article class="card">
-            <span class="card__number">01 / PROTOCOL</span>
-            <div>
-              <h3>Compatibility baseline defined</h3>
-              <p>Protocol V0.1 specifies six required board commands, standard response types, and error identifiers for interoperability.</p>
-            </div>
-          </article>
-          <article class="card">
-            <span class="card__number">02 / END-TO-END</span>
-            <div>
-              <h3>Arduino Uno transaction validated</h3>
-              <p>TRT-cli 1.0.0 communicated over COM4 with an Arduino Uno running TRT-core. The validated board-info response reported board ID 101, firmware 0.1.0, and build ID 000004.</p>
-            </div>
-          </article>
-          <article class="card">
-            <span class="card__number">03 / STM32</span>
-            <div>
-              <h3>Build and flash workflows implemented</h3>
-              <p>CLI support for STM32 build, flash, program discovery, and protocol tests is documented. Toolchain- and probe-dependent verification requires the corresponding local tools and target hardware.</p>
-            </div>
-          </article>
-        </div>
-        <div class="feature-band">
-          <div>
-            <p class="eyebrow">Verification boundary</p>
-            <h2>Design specifications are not bench results.</h2>
-            <p>The STM32G474 carrier-board README documents the circuit, pinout, firmware integration guidance, and PCB layout checks. It does not report completed fabrication or validation results for that carrier board. The verified end-to-end board transaction documented by TRT-cli is on the Arduino Uno target.</p>
-          </div>
-          <a class="button" href="/#contact">Contact Kangastrada <span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <a class="button button--quiet" href="/">&#8592; Back to Kangastrada</a>
       </div>
     </section>
   </main>
