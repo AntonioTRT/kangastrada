@@ -4,24 +4,32 @@ const analyticsConfig = Object.freeze({
   googleAnalyticsMeasurementId: "",
 });
 
+// The site may be served from the domain root (custom domain) or from a
+// sub-path (Live Server workspace folder, GitHub Pages project site), so
+// derive the site root from this script's own URL instead of hardcoding "/".
+const componentsScript = document.currentScript || document.querySelector('script[src$="components.js"]');
+const siteRoot = new URL(".", componentsScript ? componentsScript.src : window.location.href).pathname;
+const siteUrl = (path) => siteRoot + path.replace(/^\/+/, "");
+const normalizePath = (path) => path.replace(/index\.html$/, "").replace(/\/+$/, "") || "/";
+
 class SiteHeader extends HTMLElement {
   connectedCallback() {
     if (this.dataset.rendered === "true") return;
 
-    const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+    const currentPath = normalizePath(window.location.pathname);
     const links = [
-      ["/", "Home"],
-      ["/antonio", "About"],
-      ["/antonio/electronics", "Experience"],
-      ["/antonio/education", "Education"],
-      ["/antonio/projects", "Projects"],
-      ["/contact", "Contact"]
+      [siteUrl("/"), "Home"],
+      [siteUrl("/antonio/"), "About"],
+      [siteUrl("/antonio/electronics/"), "Experience"],
+      [siteUrl("/antonio/education/"), "Education"],
+      [siteUrl("/antonio/projects/"), "Projects"],
+      [siteUrl("/contact/"), "Contact"]
     ];
 
     this.innerHTML = `
       <a class="skip-link" href="#main">Skip to content</a>
       <header class="site-header__inner">
-        <a class="site-brand" href="/" aria-label="Kangastrada home">
+        <a class="site-brand" href="${siteUrl("/")}" aria-label="Kangastrada home">
           <span class="site-brand__mark" aria-hidden="true">K</span>
           <span>Kangastrada</span>
         </a>
@@ -30,10 +38,7 @@ class SiteHeader extends HTMLElement {
         </button>
         <nav class="site-nav" id="site-nav" aria-label="Main navigation">
           ${links.map(([href, label]) => {
-            const isContact = href === "/#contact";
-            const isCurrent = isContact
-              ? currentPath === "/" && window.location.hash === "#contact"
-              : currentPath === href.replace(/\/+$/, "") || (href === "/" && currentPath === "/");
+            const isCurrent = currentPath === normalizePath(href);
             return `<a href="${href}"${isCurrent ? ' aria-current="page"' : ""}>${label}</a>`;
           }).join("")}
         </nav>
@@ -66,12 +71,12 @@ class SiteFooter extends HTMLElement {
 
     this.innerHTML = `
       <footer class="site-footer__inner">
-        <a class="site-brand site-brand--footer" href="/" aria-label="Kangastrada home">
+        <a class="site-brand site-brand--footer" href="${siteUrl("/")}" aria-label="Kangastrada home">
           <span class="site-brand__mark" aria-hidden="true">K</span>
           <span>Kangastrada</span>
         </a>
         <p>Based in Finland</p>
-        <a href="/contact">Contact</a>
+        <a href="${siteUrl("/contact/")}">Contact</a>
         <a href="https://github.com/AntonioTRT" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
         <p class="site-footer__copyright">
           &copy; ${new Date().getFullYear()} Kangastrada
