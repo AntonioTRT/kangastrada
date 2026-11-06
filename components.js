@@ -19,10 +19,8 @@ class SiteHeader extends HTMLElement {
     const currentPath = normalizePath(window.location.pathname);
     const links = [
       [siteUrl("/"), "Home"],
-      [siteUrl("/antonio/"), "About"],
-      [siteUrl("/antonio/electronics/"), "Experience"],
-      [siteUrl("/antonio/education/"), "Education"],
-      [siteUrl("/antonio/projects/"), "Projects"],
+      [siteUrl("/antonio/"), "Antonio"],
+      [siteUrl("/projects/"), "Projects"],
       [siteUrl("/contact/"), "Contact"]
     ];
 

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Antonio Estrada is a Finland-based Hardware Engineer at GE HealthCare, working hands-on across electronics, testing, validation, and product development.">
-  <title>Antonio Estrada — Electronics &amp; Hardware Engineer</title>
+  <meta name="description" content="Kangastrada is an electronics engineering consultancy in Finland offering hands-on hardware development support, testing and validation, test automation, and manufacturing support.">
+  <title>Kangastrada — Electronics Engineering Consulting</title>
   <link rel="stylesheet" href="style.css">
   <script src="components.js" defer></script>
 </head>
@@ -13,12 +13,12 @@
   <main id="main">
     <section class="hero container">
       <div>
-        <p class="eyebrow">Hardware Engineer at GE HealthCare · Finland</p>
-        <h1>Antonio Estrada</h1>
-        <p class="lead">I work hands-on with electronic products, from board-level testing and troubleshooting to product validation and manufacturing support.</p>
+        <p class="eyebrow">Electronics engineering consultancy · Finland</p>
+        <h1>Kangastrada</h1>
+        <p class="lead">Hands-on hardware engineering for electronic products: development support, testing and validation, test automation, and manufacturing support.</p>
         <div class="hero-actions">
-          <a class="button" href="antonio/electronics/">Electronics experience <span aria-hidden="true">→</span></a>
-          <a class="button button--quiet" href="antonio/projects/">Selected projects <span aria-hidden="true">→</span></a>
+          <a class="button" href="#services">Our services <span aria-hidden="true">→</span></a>
+          <a class="button button--quiet" href="contact/">Get in touch <span aria-hidden="true">→</span></a>
         </div>
       </div>
       <div class="hero-visual" role="img" aria-label="Electronics testing and product development">
@@ -26,21 +26,21 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="services" aria-labelledby="services-title">
       <div class="container">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">How I work</p>
-            <h2>Hands-on from prototype to production.</h2>
+            <p class="eyebrow">Services</p>
+            <h2 id="services-title">Engineering support from prototype to production.</h2>
           </div>
-          <p>I like finding out what the hardware is really doing, then helping make the product better.</p>
+          <p>Practical help where it matters: at the bench, in the lab, and on the production line.</p>
         </div>
         <div class="card-grid">
           <article class="card">
             <span class="card__number">01 / DEVELOP</span>
             <div>
-              <h3>Electronics &amp; embedded systems</h3>
-              <p>Product development for medical, wearable, and battery-powered devices.</p>
+              <h3>Electronics &amp; embedded development</h3>
+              <p>Board-level development support for medical, wearable, and battery-powered devices.</p>
             </div>
           </article>
           <article class="card">
@@ -51,48 +51,54 @@
             </div>
           </article>
           <article class="card">
-            <span class="card__number">03 / DEBUG</span>
+            <span class="card__number">03 / AUTOMATE</span>
             <div>
-              <h3>Troubleshooting</h3>
-              <p>Practical hardware debugging in the lab and during manufacturing.</p>
+              <h3>Test automation</h3>
+              <p>Automated test systems, instrument control, and traceable measurement capture.</p>
             </div>
           </article>
           <article class="card">
             <span class="card__number">04 / SUPPORT</span>
             <div>
               <h3>Manufacturing support</h3>
-              <p>Component qualification, end-of-line activities, and product improvement.</p>
+              <p>Hardware troubleshooting, component qualification, and end-of-line activities.</p>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="test-systems-title">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Selected work</p>
-            <h2 id="test-systems-title">Engineering projects</h2>
-          </div>
+    <section class="section" aria-labelledby="capabilities-title">
+      <div class="container split">
+        <p class="split__label">Capabilities</p>
+        <div class="prose">
+          <h2 id="capabilities-title">Measure, understand, improve.</h2>
+          <p>Kangastrada works close to the hardware: reproduce the problem, measure it, and let the evidence guide the next step.</p>
+          <ul>
+            <li>Hardware troubleshooting and root-cause analysis</li>
+            <li>Board-level testing and product verification</li>
+            <li>Power-consumption and battery characterization</li>
+            <li>PXI-based and bench test system development</li>
+            <li>Embedded firmware and host-side tooling</li>
+            <li>Lab work with oscilloscopes, spectrum analyzers, RF and environmental chambers, and battery cyclers</li>
+          </ul>
         </div>
-        <div class="card-grid card-grid--two">
-          <article class="card">
-            <span class="card__number">TEST AUTOMATION</span>
-            <div>
-              <h3>RPI Test Framework</h3>
-              <p>Automated DUT command checks with I2C capture and traceable test output.</p>
-              <p><a href="rpi-test-framework/">View documentation <span aria-hidden="true">&rarr;</span></a></p>
-            </div>
-          </article>
-          <article class="card">
-            <span class="card__number">BATTERY VALIDATION</span>
-            <div>
-              <h3>NIPXI Battery Test System</h3>
-              <p>PXI-based battery test infrastructure with relay control and safety monitoring.</p>
-              <p><a href="nipxi/">View documentation <span aria-hidden="true">&rarr;</span></a></p>
-            </div>
-          </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="industries-title">
+      <div class="container split">
+        <p class="split__label">Industries</p>
+        <div class="prose">
+          <h2 id="industries-title">Products where hardware has to be right.</h2>
+          <p>Experience with regulated and resource-constrained products, where verification and manufacturing quality matter as much as the design.</p>
+          <ul class="tag-list">
+            <li>Medical devices</li>
+            <li>Wearable devices</li>
+            <li>Battery-powered products</li>
+            <li>Embedded systems</li>
+            <li>Test &amp; measurement</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -100,25 +106,24 @@
     <section class="section">
       <div class="container feature-band">
         <div>
-          <p class="eyebrow">Keep learning</p>
-          <h2>Curious about how things work.</h2>
-          <p>I use AI as a practical tool for engineering research, debugging, automation, and documentation. Outside engineering, I’m into heavy metal, music production, audio, DSP, and fitness.</p>
+          <p class="eyebrow">How we work</p>
+          <h2>Hands-on, practical, and accountable.</h2>
+          <p>Kangastrada is an independent consultancy based in Finland, led by electronics engineer Antonio Estrada. Engagements are scoped around a concrete hardware problem and delivered with clear documentation.</p>
         </div>
-        <a class="button" href="antonio/">More about me <span aria-hidden="true">→</span></a>
+        <a class="button" href="antonio/">Meet Antonio <span aria-hidden="true">→</span></a>
       </div>
     </section>
 
-    <section class="section" id="projects-online">
+    <section class="section" id="contact">
       <div class="container">
         <div class="contact-card">
           <div>
-            <p class="eyebrow">More work</p>
-            <h2>Follow my engineering projects.</h2>
-            <p>Project notes and code are available on GitHub.</p>
+            <p class="eyebrow">Contact</p>
+            <h2>Let’s talk about your product.</h2>
+            <p>Tell us about your hardware, testing, or validation needs and we will get back to you.</p>
           </div>
           <div class="hero-actions">
-            <a class="button" href="contact/">Contact me <span aria-hidden="true">→</span></a>
-            <a class="button button--quiet" href="https://github.com/AntonioTRT" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            <a class="button" href="contact/">Contact Kangastrada <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </div>
